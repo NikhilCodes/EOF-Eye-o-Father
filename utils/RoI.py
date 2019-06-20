@@ -27,7 +27,7 @@ def box_is_almost_same(box1, box2):
 ##
 
 def get_regions_with_detection(img):
-    img_lbls,regions = selectivesearch.selective_search(img, scale=100, min_size=1600)
+    img_lbls,regions = selectivesearch.selective_search(img, scale=5, min_size=1600)
 
     candidates = set()
     for r in regions:
