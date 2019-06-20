@@ -137,7 +137,7 @@ class MyApp(QMainWindow):
         if filename == '':
             return
         
-        cv2.imwrite(filename, self.frame)
+        cv2.imwrite(filename, cv2.cvtColor(self.frame, cv2.COLOR_RGB2BGR))
 
     def pause_cam(self):
         self.RUN_FRAMES_FROM_CAMERA = False
