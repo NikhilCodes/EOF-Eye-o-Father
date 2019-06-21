@@ -14,3 +14,5 @@ Robust Object Detection for Slow Systems!
  ![shot2](DEMO/frame_1561028377.9039204.jpg)
  ![shot3](DEMO/frame_1561028460.5149653.jpg)
  ![shot4](DEMO/frame_1561028695.1939998.jpg)
+
+## Don't forget to Star it, if you like my project!
