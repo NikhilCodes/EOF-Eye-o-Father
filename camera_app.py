@@ -12,7 +12,6 @@ from PyQt5 import uic
 
 Ui_MainWindow, QtBaseClass = uic.loadUiType('data/VisualUI.ui')
 
-
 class MyApp(QMainWindow):
     def __init__(self):
         super(MyApp, self).__init__()
@@ -54,11 +53,15 @@ class MyApp(QMainWindow):
         self.CLOSE_ALL_THREAD = False
         self.RUN_FRAMES_FROM_CAMERA = True
         self.MODE = "CAM" # Can be "CAM" or "LOC"
+        if status == False:
+            self.MODE = "LOC"
+            self.RUN_FRAMES_FROM_CAMERA = False
+
         self.frame = None
         self.t1 = threading.Thread(target=self.runVideoFromCam, args=())
         self.t1.start()
-        
-    
+
+
     def detect_objects(self):
         threading.Thread(target=self.detect_objects_sub, args=()).start()
 
@@ -67,7 +70,7 @@ class MyApp(QMainWindow):
             if self.MODE == "LOC":
                 self.load_local()
                 return
-                
+
             self.start_cam()
             self.ui.detectButton.setText("DETECT\n")
             return
@@ -97,7 +100,7 @@ class MyApp(QMainWindow):
         Type: EventListener
         Must Run Infinitely all time!
         Must be called Once Only!
-        
+
         :return: None
         """
 
@@ -136,7 +139,7 @@ class MyApp(QMainWindow):
         filename, _ = QFileDialog.getSaveFileName(self, 'Save File', 'C:/Users/Public/Pictures/frame_'+str(time.time())+'.jpg', 'All Picture Files (*.jpg *.png *jpeg *.tif)')
         if filename == '':
             return
-        
+
         cv2.imwrite(filename, cv2.cvtColor(self.frame, cv2.COLOR_RGB2BGR))
 
     def pause_cam(self):
